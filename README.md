@@ -1,5 +1,7 @@
 # Multiply or Release?
 
+**中文** | [English](README_EN.md)
+
 用 Unity **2023.2.20f1** 复刻 Algodoo「自动对战模拟」的可运行原型。
 
 **零外部美术资源**：所有图形（方块 / 圆 / 环 / 楔形 / 图标）都由代码在运行时生成（`Primitives.cs`、`WeaponIcons.cs`），整个世界由 `Bootstrap.cs` 用 `[RuntimeInitializeOnLoadMethod]` 搭出来 —— 不依赖任何场景、预制体、材质。
@@ -7,6 +9,7 @@
 | 文档 | 内容 |
 |---|---|
 | **本文件** | 怎么跑、怎么玩、代码在哪 |
+| [English](README_EN.md) | 本文件全文的英文版 |
 | [RULES.md](RULES.md) | 现行规则速查（数值、公式、开关），**改玩法先看这份** |
 | [README_HISTORY.md](README_HISTORY.md) | 开发日志：111 轮「按反馈逐条修正」，解释每条规则为什么长这样 |
 
@@ -30,9 +33,9 @@
 | `L` | 给每个阵营补一颗增倍球 |
 | `F1` / `F2` | 性能面板 / 录屏定步长模式 |
 | `-` `+` | 模拟速度 ×0.5 / ×2 |
-| 滚轮 / `WASD` / `R` | 战场缩放 / 平移 / 复位 |
+| `Tab` / `空格` | 设置面板（阵营数 / 颜色）/ 暂停继续 |
 
-> `空格`（暂停）、`Tab`（设置面板）目前被 `Cfg.EnableSettingsPanel = false` 总开关关掉，要用得先改成 `true`。
+> 战场相机是**固定取景**（`CameraRig.FitSize` 一次算好），没有缩放 / 平移 / 复位。
 
 ---
 

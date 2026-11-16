@@ -4,7 +4,8 @@ namespace MultiplyOrRelease
 {
     /// <summary>
     /// 双相机：左栏看增倍区，右栏看战场。
-    /// 右栏支持滚轮缩放 / WASD 平移，方便调规则的时候盯局面。
+    /// ★ 第 131 轮（用户）：「把右边地图的缩放移动功能删掉」—— 战场相机现在**完全固定**，
+    ///   不再响应滚轮 / WASD / R，取景由 <see cref="FitSize"/> 一次算好就不再变。
     /// </summary>
     public class CameraRig : MonoBehaviour
     {
@@ -12,9 +13,6 @@ namespace MultiplyOrRelease
         public Camera BattleCam;
         /// <summary>左栏背景的游荡投影（可为 null）。</summary>
         public ZoneProjection Projection;
-
-        Vector3 _battleHome;
-        float _battleHomeSize;
 
         public static CameraRig Build(GameWorld world)
         {
@@ -76,9 +74,6 @@ namespace MultiplyOrRelease
             bc.useOcclusionCulling = false;
             rig.BattleCam = bc;
 
-            rig._battleHome = bc.transform.position;
-            rig._battleHomeSize = bc.orthographicSize;
-
             // ── 左栏背景：游荡的投影相机（规格：小方框在战场匀速游荡、碰墙反弹，
             //    框里的画面投影到增倍区背景上，透明度 25%）──
             var proj = ZoneProjection.Build(go.transform, world.Zone.transform,
@@ -98,43 +93,6 @@ namespace MultiplyOrRelease
             float vh = Mathf.Max(Screen.height * viewport.height, 1f);
             float aspect = vw / vh;
             return Mathf.Max(h * 0.5f, (w * 0.5f) / aspect);
-        }
-
-        void Update()
-        {
-            if (BattleCam == null) return;
-
-            // 滚轮缩放（只在右栏范围内响应）
-            Vector3 m = Input.mousePosition;
-            bool overBattle = m.x > Screen.width * Cfg.LeftPanelViewportWidth;
-
-            if (overBattle)
-            {
-                float scroll = Input.GetAxis("Mouse ScrollWheel");
-                if (Mathf.Abs(scroll) > 0.0001f)
-                {
-                    BattleCam.orthographicSize = Mathf.Clamp(
-                        BattleCam.orthographicSize * (1f - scroll * 0.8f), 8f, 400f);
-                }
-            }
-
-            // WASD 平移
-            float dx = 0f, dy = 0f;
-            if (Input.GetKey(KeyCode.A)) dx -= 1f;
-            if (Input.GetKey(KeyCode.D)) dx += 1f;
-            if (Input.GetKey(KeyCode.S)) dy -= 1f;
-            if (Input.GetKey(KeyCode.W)) dy += 1f;
-            if (dx != 0f || dy != 0f)
-            {
-                float speed = BattleCam.orthographicSize * 1.6f * Time.deltaTime;
-                BattleCam.transform.position += new Vector3(dx * speed, dy * speed, 0f);
-            }
-
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                BattleCam.transform.position = _battleHome;
-                BattleCam.orthographicSize = _battleHomeSize;
-            }
         }
     }
 }

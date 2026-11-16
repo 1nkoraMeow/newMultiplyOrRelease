@@ -264,13 +264,13 @@
 | `F1` | 性能统计面板（分项 `frame/pool/flush/hud/view`） |
 | `F2` | 录屏用「定步长」模式开关 |
 | `-` / `+` | 模拟速度 ×0.5 / ×2（0.125× ~ 8×） |
-| 滚轮 / `WASD` / `R` | 右侧战场缩放 / 平移 / 复位 |
-| 空格 / `Tab` | 暂停 / 设置面板（**当前被总开关关掉了，见下**） |
+| 空格 / `Tab` | 暂停 / 设置面板（**已开启**：`EnableSettingsPanel` / `ShowSettingsButton` 都是 `true`） |
+
+> 战场相机**固定取景**（`CameraRig.FitSize` 一次算好），滚轮缩放 / `WASD` 平移 / `R` 复位已于第 131 轮删除。
 
 **当前处于关闭状态的功能**：
 
-- `Cfg.EnableSettingsPanel = false` → 设置面板**连物体都不创建**，`Tab` / 空格 / 换阵营数 / 换颜色全部不可用。要用得先把这个常量改 `true`。
-- `Cfg.ShowSettingsButton = false`（只藏按钮；和上面是两级开关）。
+- `Cfg.EnableSettingsPanel = true`、`Cfg.ShowSettingsButton = true` → 设置面板**已启用**（Tab 或右上角按钮打开；开着时 HUD 整块不画，见 `SettingsPanel.BlocksHud`）。想彻底关掉把 `EnableSettingsPanel` 改回 `false`（连物体都不创建）。
 - `Cfg.CiwsEnabled = false` → 武器栏第 8 格是吸血球，近防炮功能整体不进局。
 - `Cfg.CaptureModeAtStart = false` → 默认实时模式，录屏按 `F2` 开定步长（60 步/秒，`FixedTimestep=1/60`）。
 - `Cfg.VignetteStrength = 0`、`MapGridEvery = 0`、`BrushEdgeNoise = 0`、`TerritoryEdgeAA = 0` → 暗角、网格、领土毛边、边缘抗锯齿都关掉了。

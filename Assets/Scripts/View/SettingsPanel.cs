@@ -35,6 +35,22 @@ namespace MultiplyOrRelease
         /// <summary>正在拆/建世界（这期间屏蔽输入，画个提示）。</summary>
         bool _restarting;
 
+        /// <summary>当前这个面板实例（`Bootstrap` 只建一个）。</summary>
+        static SettingsPanel _instance;
+
+        /// <summary>
+        /// 设置面板**正在挡住画面**（开着 或 正在重开）。
+        /// ★★ 第 131 轮（用户截图：炮台的「名称 / 护盾值」压在面板的「切换会重开一局」上）：
+        ///   下面 `GUI.depth = -10` 的意图是「面板压在 HUD 上面」，但**实测压不住**
+        ///   （跨脚本的 depth 排序在这种「HUD 非 Repaint 就提前 return」的写法下不可靠）。
+        ///   所以改成「面板开着时 HUD 整块不画」（`HudOverlay.OnGUI` 读这个属性）：
+        ///   面板本来就有一层 0.55 的黑遮罩，HUD 消失不会让画面显得突兀。
+        /// </summary>
+        public static bool BlocksHud
+        {
+            get { return _instance != null && (_instance._open || _instance._restarting); }
+        }
+
         /// <summary>工作副本：面板上拖滑条只改这里，点「应用」才落盘 + 重开。</summary>
         readonly Vector3[] _hsv = new Vector3[MaxFactions];
         readonly bool[] _black = new bool[MaxFactions];
@@ -56,9 +72,14 @@ namespace MultiplyOrRelease
 
         void Awake()
         {
+            _instance = this;
             _white = Texture2D.whiteTexture;
             Reload();
         }
+
+        void OnEnable() { _instance = this; }
+
+        void OnDisable() { if (_instance == this) _instance = null; }
 
         /// <summary>把「当前生效的设置」读进工作副本。</summary>
         void Reload()

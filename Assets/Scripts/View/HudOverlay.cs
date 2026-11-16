@@ -176,6 +176,11 @@ namespace MultiplyOrRelease
         void OnGUI()
         {
             if (_world == null || _rig == null || _rig.ZoneCam == null) return;
+            // ★ 第 131 轮（用户截图）：设置面板开着时**整块 HUD 不画**。
+            //   之前想靠 `SettingsPanel` 里的 `GUI.depth = -10` 把面板压在 HUD 上面，
+            //   但实测压不住 —— 表现就是炮台的「名称 / 子弹数 / 护盾值」压在
+            //   「切换会重开一局」上面。面板本身有一层 0.55 的黑遮罩，HUD 消失不突兀。
+            if (SettingsPanel.BlocksHud) return;
             // OnGUI 每帧会被调用多次（Layout / Repaint / 各种输入事件）。
             // 我们全部用绝对坐标，不需要 Layout 阶段 —— 只画 Repaint 一次，HUD 开销直接砍一半以上。
             if (Event.current != null && Event.current.type != EventType.Repaint) return;
@@ -1095,7 +1100,7 @@ namespace MultiplyOrRelease
             _counter.fontSize = size;
             _counter.normal.textColor = new Color(1f, 1f, 1f, 0.45f);
             GUI.Label(new Rect(10f, Screen.height - size * 1.5f, 1200f, size * 1.4f),
-                "1-4 focus   K kill turret   B spawn 999M ball   V spawn 99M vampire   L +1 ball each   F1 stats   wheel zoom / WASD pan / R reset   -/+ speed",
+                "1-4 focus   K kill turret   B spawn 999M ball   V spawn 99M vampire   L +1 ball each   F1 stats   -/+ speed",
                 _counter);
         }
 

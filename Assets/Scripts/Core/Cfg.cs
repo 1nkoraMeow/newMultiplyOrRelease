@@ -29,7 +29,7 @@ namespace MultiplyOrRelease
         /// ★ 设置面板总开关。`false` = 连右上角那个入口按钮都不建，
         /// 整个功能（含键盘 Tab / 空格）都不存在，HUD 布局一点不受影响。
         /// </summary>
-        public const bool EnableSettingsPanel = false;
+        public const bool EnableSettingsPanel = true;
         /// <summary>
         /// 右上角那个「设置」**入口按钮**要不要画。
         ///   和 `EnableSettingsPanel` 的区别：
@@ -38,7 +38,7 @@ namespace MultiplyOrRelease
         /// ★ `static readonly` 而不是 `const`：`const false` 会让 `DrawLauncher` 里那个 `if`
         ///   变成 unreachable，白多一条警告（和 `GameSettings.Persist` 同一个理由）。
         /// </summary>
-        public static readonly bool ShowSettingsButton = false;
+        public static readonly bool ShowSettingsButton = true;
         /// <summary>开关设置面板的键。手机上点右上角按钮。</summary>
         public static readonly KeyCode SettingsPanelKey = KeyCode.Tab;
         /// <summary>暂停 / 继续的快捷键。</summary>
