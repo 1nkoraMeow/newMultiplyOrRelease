@@ -1,0 +1,58 @@
+using UnityEngine;
+
+namespace MultiplyOrRelease
+{
+    /// <summary>
+    /// **会移动**的阻挡球。录像里只有三个：一个在乘倍区、一个在固定阻挡球排、
+    /// 一个在武器区。它们在各自的小范围里慢慢游走，撞到增倍球会把球弹开。
+    /// </summary>
+    public class MovingBlocker : MonoBehaviour
+    {
+        Vector2 _home;
+        float _phase;
+        Rigidbody2D _rb;
+
+        public static MovingBlocker Create(Transform parent, Vector2 homeLocal, float radius)
+        {
+            var go = new GameObject("MovingBlocker");
+            go.transform.SetParent(parent, false);
+            go.transform.localPosition = homeLocal;
+            go.transform.localScale = Vector3.one * (radius * 2f);
+
+            var mb = go.AddComponent<MovingBlocker>();
+            mb._home = homeLocal;
+            mb._phase = Random.Range(0f, Mathf.PI * 2f);
+
+            var sr = Primitives.MakeNode("Body", Primitives.Circle,
+                Palette.Alpha(Palette.BubbleGrey, 0.9f), 3, go.transform);
+            sr.transform.localScale = Vector3.one;
+
+            var col = go.AddComponent<CircleCollider2D>();
+            col.radius = 0.5f;
+            col.sharedMaterial = Physics2DConfig.Wall;
+
+            var rb = go.AddComponent<Rigidbody2D>();
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            rb.gravityScale = 0f;
+            rb.freezeRotation = true;
+            mb._rb = rb;
+
+            return mb;
+        }
+
+        void FixedUpdate()
+        {
+            if (_rb == null) return;
+            _phase += Time.fixedDeltaTime * Cfg.MovingBlockerSpeed;
+
+            // 规格：**只在各自的位置上做水平来回移动**（不是太空漫步）
+            Vector2 local = _home + new Vector2(
+                Mathf.Sin(_phase) * Cfg.MovingBlockerRangeX,
+                Cfg.MovingBlockerRangeY);
+
+            _rb.MovePosition(transform.parent != null
+                ? (Vector2)transform.parent.TransformPoint(local)
+                : local);
+        }
+    }
+}

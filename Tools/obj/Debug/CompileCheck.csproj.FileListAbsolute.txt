@@ -1,0 +1,25 @@
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/obj/Debug/CompileCheck.csproj.AssemblyReference.cache
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/obj/Debug/CompileCheck.GeneratedMSBuildEditorConfig.editorconfig
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/obj/Debug/CompileCheck.csproj.CoreCompileInputs.cache
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/bin/Debug/MorCompileCheck.dll
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/bin/Debug/MorCompileCheck.pdb
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/bin/Debug/System.Data.Common.dll
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/bin/Debug/System.Diagnostics.StackTrace.dll
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/bin/Debug/System.Diagnostics.Tracing.dll
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/bin/Debug/System.Globalization.Extensions.dll
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/bin/Debug/System.IO.Compression.dll
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/bin/Debug/System.Net.Http.dll
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/bin/Debug/System.Net.Sockets.dll
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/bin/Debug/System.Runtime.Serialization.Primitives.dll
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/bin/Debug/System.Security.Cryptography.Algorithms.dll
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/bin/Debug/System.Security.SecureString.dll
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/bin/Debug/System.Threading.Overlapped.dll
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/bin/Debug/System.Xml.XPath.XDocument.dll
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/obj/Debug/CompileC.0771B227.Up2Date
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/obj/Debug/MorCompileCheck.dll
+/Users/yuelun_1/Library/Application Support/CherryStudio/Data/Agents/system/2026-10-03/29c6e4d8-a198-4772-835c-cd1109778941/MultiplyOrRelease/Tools/obj/Debug/MorCompileCheck.pdb
+E:\sth\mutiplyorrelease_new\MultiplyOrRelease\Tools\obj\Debug\CompileCheck.csproj.AssemblyReference.cache
+E:\sth\mutiplyorrelease_new\MultiplyOrRelease\Tools\obj\Debug\CompileCheck.GeneratedMSBuildEditorConfig.editorconfig
+E:\sth\mutiplyorrelease_new\MultiplyOrRelease\Tools\obj\Debug\CompileCheck.csproj.CoreCompileInputs.cache
+E:\sth\mutiplyorrelease_new\MultiplyOrRelease\Tools\obj\Debug\MorCompileCheck.dll
+E:\sth\mutiplyorrelease_new\MultiplyOrRelease\Tools\obj\Debug\MorCompileCheck.pdb

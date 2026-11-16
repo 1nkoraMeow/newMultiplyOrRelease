@@ -1,0 +1,93 @@
+using UnityEngine;
+
+namespace MultiplyOrRelease
+{
+    /// <summary>
+    /// 发射炮台。坐在 x16 上方那块**阻挡**上，有一根长方形炮管。
+    ///
+    /// 规格：**旋转有极限，不超过 180 度**；转到下面就会掉头，循环往复。
+    /// 所以它只在上半圈（Cfg.LauncherMinAngle ~ MaxAngle）来回扫。
+    /// 增倍球乘倍完 / 选了武器后数值归 1，就从这个炮口带着初速度打出去。
+    /// </summary>
+    public class Launcher : MonoBehaviour
+    {
+        public float AngleDeg { get; private set; }
+
+        Transform _pivot;
+        Transform _root;
+        Vector3 _home;          // ★ 它该待的位置（x16 阻挡上面）
+        int _dir = 1;
+        float _kick;
+
+        public static Launcher Create(Transform parent, Vector2 localPos)
+        {
+            var go = new GameObject("Launcher");
+            go.transform.SetParent(parent, false);
+            go.transform.localPosition = localPos;
+
+            var launcher = go.AddComponent<Launcher>();
+            launcher._home = localPos;
+
+            var body = Primitives.MakeNode("Body", Primitives.Circle,
+                new Color(0.72f, 0.72f, 0.74f), 12, go.transform);
+            body.transform.localScale = Vector3.one * (Cfg.LauncherRadius * 2f);
+
+            var pivot = new GameObject("BarrelPivot");
+            pivot.transform.SetParent(go.transform, false);
+            launcher._pivot = pivot.transform;
+
+            var bar = Primitives.MakeNode("Barrel", Primitives.Square,
+                new Color(0.84f, 0.84f, 0.86f), 13, pivot.transform);
+            bar.transform.localScale = new Vector3(Cfg.LauncherBarrelLength, Cfg.LauncherBarrelWidth, 1f);
+            bar.transform.localPosition = new Vector3(Cfg.LauncherBarrelLength * 0.5f, 0f, 0f);
+
+            launcher._root = go.transform;
+            launcher.AngleDeg = Cfg.LauncherMaxAngle;
+            launcher.Apply();
+            return launcher;
+        }
+
+        void Update()
+        {
+            AngleDeg += _dir * Cfg.LauncherSweepSpeed * Time.deltaTime;
+
+            // 只在 0..180 之间扫，碰到极限就掉头（永远不会转到下面去）
+            if (AngleDeg >= Cfg.LauncherMaxAngle) { AngleDeg = Cfg.LauncherMaxAngle; _dir = -1; }
+            else if (AngleDeg <= Cfg.LauncherMinAngle) { AngleDeg = Cfg.LauncherMinAngle; _dir = 1; }
+
+            Apply();
+        }
+
+        /// <summary>发射时弹一下（视觉反馈）。</summary>
+        public void Recoil() { _kick = 0.14f; }
+
+        void Apply()
+        {
+            if (_pivot != null) _pivot.localRotation = Quaternion.Euler(0f, 0f, AngleDeg);
+
+            if (_root == null) return;
+            if (_kick > 0f)
+            {
+                _kick = Mathf.MoveTowards(_kick, 0f, Time.deltaTime * 0.9f);
+                float r = AngleDeg * Mathf.Deg2Rad;
+                // ★ 后坐是相对「家」的偏移。之前这里直接写 Vector3.zero，
+                //   等于每帧把炮台拽回增倍区正中心 —— 就是你看到的「炮台跑到中间去了」。
+                _root.localPosition = _home + new Vector3(Mathf.Cos(r), Mathf.Sin(r), 0f) * -_kick;
+            }
+            else
+            {
+                _root.localPosition = _home;
+            }
+        }
+
+        /// <summary>当前的发射方向（就是炮口朝向）。</summary>
+        public Vector2 Direction
+        {
+            get
+            {
+                float r = AngleDeg * Mathf.Deg2Rad;
+                return new Vector2(Mathf.Cos(r), Mathf.Sin(r));
+            }
+        }
+    }
+}

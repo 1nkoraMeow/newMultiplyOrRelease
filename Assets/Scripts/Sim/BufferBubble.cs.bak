@@ -1,0 +1,67 @@
+using UnityEngine;
+
+namespace MultiplyOrRelease
+{
+    /// <summary>
+    /// 灰色气泡。规格：**快速竖直向上移动**，一直升到 **x16 框下方就消失**，
+    /// 然后从底部的**三个生成点**之一重新冒出来。
+    /// 它们不属于任何阵营，用来给增倍区里的球做缓冲 / 把球往上顶。
+    /// </summary>
+    public class BufferBubble : MonoBehaviour
+    {
+        Rigidbody2D _rb;
+        float _radius;
+        MultiplierZone _zone;
+
+        public float Radius { get { return _radius; } }
+
+        public static BufferBubble Create(MultiplierZone zone, Vector2 localPos, float radius)
+        {
+            var go = new GameObject("Bubble");
+            go.transform.SetParent(zone.transform, false);
+            go.transform.localPosition = localPos;
+
+            var bubble = go.AddComponent<BufferBubble>();
+            bubble._radius = radius;
+            bubble._zone = zone;
+
+            var sr = Primitives.MakeNode("Body", Primitives.Circle,
+                Palette.Alpha(Palette.BubbleGrey, 0.55f), 2, go.transform);
+            sr.transform.localScale = Vector3.one;
+
+            var col = go.AddComponent<CircleCollider2D>();
+            col.radius = 0.5f;
+
+            var rb = go.AddComponent<Rigidbody2D>();
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.gravityScale = 0f;
+            rb.drag = 0.4f;
+            rb.angularDrag = 0.5f;
+            rb.mass = 0.35f;
+            rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+            rb.freezeRotation = true;
+            rb.sharedMaterial = Physics2DConfig.Slippery;
+            bubble._rb = rb;
+
+            go.transform.localScale = Vector3.one * (radius * 2f);
+            return bubble;
+        }
+
+        void FixedUpdate()
+        {
+            if (_rb == null) return;
+
+            // 快速竖直向上
+            Vector2 v = _rb.velocity;
+            _rb.velocity = new Vector2(v.x * 0.92f, Cfg.BubbleRiseSpeed);
+
+            // 升到 x16 框下方 → 消失，回到三个生成点之一
+            if (_rb.position.y - Cfg.ZoneCenter.y > Cfg.BubbleDespawnY)
+            {
+                Vector2 p = _zone != null ? _zone.RandomBubbleSpawnWorld() : (Vector2)transform.position;
+                _rb.position = p;
+                transform.position = p;
+            }
+        }
+    }
+}

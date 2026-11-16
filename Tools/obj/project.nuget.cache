@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "MfAR2TCxX0U=",
+  "success": true,
+  "projectFilePath": "E:\\sth\\mutiplyorrelease_new\\MultiplyOrRelease\\Tools\\CompileCheck.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\123\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.3\\microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
+    "C:\\Users\\123\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net471\\1.0.3\\microsoft.netframework.referenceassemblies.net471.1.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
