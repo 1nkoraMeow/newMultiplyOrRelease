@@ -2,10 +2,10 @@
 
 > 整理于 2026-11-08，依据当前工作区代码（Unity 2023.2.20f1）。
 >
-> **权威性顺序**：`Assets/Scripts/` 里的实现 > 本文件 > `README.md`。
-> `README.md` 是 3452 行、111 轮的「按反馈逐条修正」日志，**开头 1~320 行的「规格 / 待确认 12 项 / 代码结构」属于早期版本，绝大多数已被后续轮次推翻**。本文件只写当前真正生效的规则，数值均可在 `Assets/Scripts/Core/Cfg.cs` 里核到。
+> **权威性顺序**：`Assets/Scripts/` 里的实现 > 本文件 > `README_HISTORY.md`。
+> `README_HISTORY.md` 是 4000+ 行、111 轮的「按反馈逐条修正」日志（原 `README.md`，2026-11-16 起改名存档），**开头 1~320 行的「规格 / 待确认 12 项 / 代码结构」属于早期版本，绝大多数已被后续轮次推翻**。本文件只写当前真正生效的规则，数值均可在 `Assets/Scripts/Core/Cfg.cs` 里核到。
 >
-> 想改规则：先改 `Cfg.cs`；想查「为什么是这样」：去 `README.md` 翻对应轮次；想确认没改坏：跑 `Assets/Editor/SmokeTest.cs`。
+> 想改规则：先改 `Cfg.cs`；想查「为什么是这样」：去 `README_HISTORY.md` 翻对应轮次；想确认没改坏：跑 `Assets/Editor/SmokeTest.cs`。
 
 ---
 
@@ -281,9 +281,9 @@
 
 ---
 
-## 10. 已作废的旧规则（别再照 README 前半段抄）
+## 10. 已作废的旧规则（别再照 README_HISTORY 前半段抄）
 
-| README 前 320 行的说法 | 现行事实 |
+| README_HISTORY 前 320 行的说法 | 现行事实 |
 |---|---|
 | 地图世界尺寸 **96×96m** | **14m**（第 7 轮按录像反推） |
 | `ShieldVisualScale = 10` / `BigBallVisualScale` | 第 7 轮**整个删掉**（=1），直接按公式 |
